@@ -34,7 +34,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Main main = new Main(100.00, 7.95);
+        Main main = new Main(245.00, 47.02);
 
         main.figureChange();
         System.out.println("Change Amount: " + main.getChangeVal());
@@ -55,8 +55,8 @@ public class Main {
         double newChange;
         int[] changeLocal = new int[8];
 
-        while (change != 0) {
-            if (change > TWENTY_VAL) {
+        //while (change != 0) {
+            if (change >= TWENTY_VAL) {
                 holder = change / TWENTY_VAL;
                 changeLocal[0] = (int) holder;
                 holder = change - (changeLocal[0] * TWENTY_VAL);
@@ -106,9 +106,12 @@ public class Main {
                 if (change != 0) {
                     changeLocal[7]++;
                     change = 0;
+                } if (changeLocal[7] == 5){
+                    changeLocal[7] = 0;
+                    changeLocal[6]++;
                 }
             }
-        }
+       // }
 
 
         System.out.println(holder + " " + change);
