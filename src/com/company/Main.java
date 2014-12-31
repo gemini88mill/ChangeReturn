@@ -1,6 +1,8 @@
 package com.company;
 
 
+import java.util.Arrays;
+
 /**
  * Change Return program:
  *
@@ -18,6 +20,7 @@ public class Main {
 
     double changeVal;
     int[] change = new int[8];
+    String[] changeTitle = {"Twenty(s)", "Ten(s)", "Five(s)", "One(s)", "Quarter(s)", "Dime(s)", "Nickel(s)", "Penny(s)"};
 
     private final double TWENTY_VAL = 20.00;
     private final double TEN_VAL = 10.00;
@@ -41,6 +44,9 @@ public class Main {
     }
 
     private void changePrintOut() {
+        for (int x = 0; x < getChange().length; x++){
+            System.out.println(changeTitle[x] + "\t\t\t " + getChange()[x]);
+        }
     }
 
     private void giveChange() {
@@ -107,6 +113,8 @@ public class Main {
 
         System.out.println(holder + " " + change);
         System.out.println(changeLocal[3]);
+
+        setChange(changeLocal);
 
 
     }
