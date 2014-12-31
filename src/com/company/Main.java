@@ -1,6 +1,7 @@
 package com.company;
 
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 /**
@@ -23,7 +24,8 @@ public class Main {
     private int[] change = new int[8];
 
     //finals
-    private final String[] changeTitle = {"Twenty(s)", "Ten(s)  ", "Five(s)  ", "One(s)  ", "Quarter(s)", "Dime(s)  ", "Nickel(s)", "Penny(s)"};
+    private final String[] changeTitle = {"Twenty(s)", "Ten(s)  ", "Five(s)  ", "One(s)  ", "Quarter(s)", "Dime(s)  "
+            , "Nickel(s)", "Penny(s)"};
     private final double[] TENDER_VAL = {20.00, 10.00, 5.00, 1.00, 0.25, 0.10, 0.05, 0.01};
 
 
@@ -35,11 +37,11 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        Main main = new Main(51.00, 47.89);
+        Main main = new Main(51.00, 47.54);
+        DecimalFormat df = new DecimalFormat("#.##");
 
         main.figureChange();
-       // main.roundChange();
-        System.out.println("Change Amount: " + main.getChangeVal());
+        System.out.println("Change Amount: " + df.format(main.getChangeVal()));
 
         main.giveChange();
         main.changePrintOut();
@@ -70,14 +72,17 @@ public class Main {
         for (int x = 0; x < TENDER_VAL.length; x++){
             if (change >= TENDER_VAL[x]){
                 holder = change / TENDER_VAL[x];
-                changeLocal[x] = (int) holder;
+                changeLocal[x] = (int) Math.floor(holder);
                 holder = change - (changeLocal[x] * TENDER_VAL[x]);
                 change = holder;
             }
         }
 
-        System.out.println(holder + " " + change);
-        System.out.println(changeLocal[3]);
+        DecimalFormat df = new DecimalFormat("#.##");
+
+       // System.out.println(holder + " " + df.format(change));
+       // System.out.println(changeLocal[3]);
+
 
         setChange(changeLocal);
 
