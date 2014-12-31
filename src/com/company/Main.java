@@ -14,13 +14,13 @@ import java.util.Arrays;
  */
 public class Main {
 
-    double amountTendered;
-    double productVal;
+    private double amountTendered;
+    private double productVal;
 
 
-    double changeVal;
-    int[] change = new int[8];
-    String[] changeTitle = {"Twenty(s)", "Ten(s)", "Five(s)", "One(s)", "Quarter(s)", "Dime(s)", "Nickel(s)", "Penny(s)"};
+    private double changeVal;
+    private int[] change = new int[8];
+    private final String[] changeTitle = {"Twenty(s)", "Ten(s)  ", "Five(s)  ", "One(s)  ", "Quarter(s)", "Dime(s)  ", "Nickel(s)", "Penny(s)"};
 
     private final double TWENTY_VAL = 20.00;
     private final double TEN_VAL = 10.00;
@@ -32,9 +32,11 @@ public class Main {
     private final double NICKEL_VAL = 0.05;
     private final double PENNY_VAL = 0.01;
 
+    private final double[] TENDER_VAL = {20.00, 10.00, 5.00, 1.00, 0.25, 0.10, 0.05, 0.01};
+
 
     public static void main(String[] args) {
-        Main main = new Main(245.00, 47.02);
+        Main main = new Main(51.00, 47.06);
 
         main.figureChange();
         System.out.println("Change Amount: " + main.getChangeVal());
@@ -55,64 +57,14 @@ public class Main {
         double newChange;
         int[] changeLocal = new int[8];
 
-        //while (change != 0) {
-            if (change >= TWENTY_VAL) {
-                holder = change / TWENTY_VAL;
-                changeLocal[0] = (int) holder;
-                holder = change - (changeLocal[0] * TWENTY_VAL);
+        for (int x = 0; x < TENDER_VAL.length; x++){
+            if (change >= TENDER_VAL[x]){
+                holder = change / TENDER_VAL[x];
+                changeLocal[x] = (int) holder;
+                holder = change - (changeLocal[x] * TENDER_VAL[x]);
                 change = holder;
             }
-            if (change > TEN_VAL) {
-                holder = change / TEN_VAL;
-                changeLocal[1] = (int) holder;
-                holder = change - (changeLocal[1] * TEN_VAL);
-                change = holder;
-            }
-            if (change > FIVE_VAL) {
-                holder = change / FIVE_VAL;
-                changeLocal[2] = (int) holder;
-                holder = change - (changeLocal[2] * FIVE_VAL);
-                change = holder;
-            }
-            if (change > DOLLAR_VAL) {
-                holder = change / DOLLAR_VAL;
-                changeLocal[3] = (int) holder;
-                holder = change - (changeLocal[3] * DOLLAR_VAL);
-                change = holder;
-            }
-            if (change > QUARTER_VAL) {
-                holder = change / QUARTER_VAL;
-                changeLocal[4] = (int) holder;
-                holder = change - (changeLocal[4] * QUARTER_VAL);
-                change = holder;
-            }
-            if (change > DIME_VAL) {
-                holder = change / DIME_VAL;
-                changeLocal[5] = (int) holder;
-                holder = change - (changeLocal[5] * DIME_VAL);
-                change = holder;
-            }
-            if (change > NICKEL_VAL) {
-                holder = change / NICKEL_VAL;
-                changeLocal[6] = (int) holder;
-                holder = change - (changeLocal[6] * NICKEL_VAL);
-                change = holder;
-            }
-            if (change > PENNY_VAL) {
-                holder = change / PENNY_VAL;
-                changeLocal[7] = (int) holder;
-                holder = change - (changeLocal[7] * PENNY_VAL);
-                change = holder;
-                if (change != 0) {
-                    changeLocal[7]++;
-                    change = 0;
-                } if (changeLocal[7] == 5){
-                    changeLocal[7] = 0;
-                    changeLocal[6]++;
-                }
-            }
-       // }
-
+        }
 
         System.out.println(holder + " " + change);
         System.out.println(changeLocal[3]);
